@@ -1,0 +1,6 @@
+[submodule "2024/inputs"]
+	path = 2024/inputs
+	url = git@github.com:pablocasares/advent-of-code-inputs.git
+[submodule "2024/advent-of-code-2024/inputs"]
+	path = 2024/advent-of-code-2024/inputs
+	url = git@github.com:pablocasares/advent-of-code-inputs.git
