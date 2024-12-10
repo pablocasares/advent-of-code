@@ -85,24 +85,28 @@ fun main() {
             }
 
             if (!isValid) {
-                val fixedPages = mutableListOf<Int>()
-                for(page in line) {
-                    var found = false
+                //entering here means the update needs a fix
+                val fixedPages = mutableListOf<Int>() // list we need to fill with the right order
+                for(page in line) { //iterate over all elements of the list
+                    var found = false //flag to check if we found the right place to insert the element
+                    // iterate the fixedPages list, from the end to the start. So if there's a rule for any already added element in our final list saying that the one
+                    // we want to add need to be after, we can insert it right after that one.
                     for (i in fixedPages.size-1 downTo 0) {
+                        //Example: if we want to add "2" and "2" needs to be after "1" and "1" is already in the list, we can insert "2" right after "1"
                         if (pagesOrder.containsKey(fixedPages[i]) && pagesOrder[fixedPages[i]]!!.contains(page)) {
                             fixedPages.add(i+1, page)
                             found = true
                             break
                         }
                     }
-                    if(!found) {
+                    if(!found) { //if we didn't find any rule that says where to insert the element, we can just add it to the start of the list.
                         fixedPages.add(0, page)
                     }
-                    if (fixedPages.size == 0) {
+                    if (fixedPages.size == 0) { //this is just for the first element, the fixedPages list is empty so we can just add it.
                         fixedPages.add(page)
                     }
                 }
-                total += fixedPages[(fixedPages.size /2)]
+                total += fixedPages[(fixedPages.size /2)] //after orderning the line get the middle value and add to the total
             }
         }
         return total
